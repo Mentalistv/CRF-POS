@@ -1,2 +1,1 @@
-pickle
 sklearn_crfsuite
