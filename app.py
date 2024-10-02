@@ -5,7 +5,7 @@ import pickle
 def word_features(sentence, i, vocab):
 	word = sentence[i][0]
 	features = {
-		'word': word,
+		'word': word.lower(),
 		'is_first': i == 0, #if the word is a first word
 		'is_last': i == len(sentence) - 1, #if the word is a last word
 		'is_capitalized': word[0].upper() == word[0],
