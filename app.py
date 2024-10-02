@@ -39,10 +39,16 @@ def sent2features(sentence, vocab):
     return [word_features(sentence, i, vocab) for i in range(len(sentence))]
 
 
-def predict(sent, model):
-    sent  = sent.split()
-    pred = model._viterbi(sent)
-    return pred
+def predict(sentence, crf):
+    tokenized_sentence = tokenize(sentence)
+
+    sentence_with_placeholder_tags = [(word, 'O') for word in tokenized_sentence]
+
+    X_test_sentence = [sent2features(sentence_with_placeholder_tags, vocab)]
+
+    y_pred_sentence = crf.predict(X_test_sentence)
+    
+    return tokenized_sentence,y_pred_sentence[0]
 
 
 
